@@ -1,20 +1,15 @@
-import java.util.Scanner;
-
 public class App {
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Esteira esteira = new Esteira();
 
         String arquivo = "baseDados.txt";
-
-
         FilaPedido.lerAquivo(arquivo);
-        System.out.println(FilaPedido.imprimir());
+        Pedido pedido = FilaPedido.primeiro();
 
+        System.out.println(pedido);
 
-
-
-
-        sc.close();
+       new Embalar(pedido, esteira);
+       new Empacotar(pedido,esteira);
     }
 }

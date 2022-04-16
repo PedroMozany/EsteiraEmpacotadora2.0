@@ -8,7 +8,7 @@ import java.util.Queue;
 public class FilaPedido {
 
 
-   private static Queue<Pedido> filaPedido =  new PriorityQueue<>();
+    private static Queue<Pedido> filaPedido = new PriorityQueue<>();
 
 
     public static void lerAquivo(String arquivo) {
@@ -16,7 +16,7 @@ public class FilaPedido {
             String linha = br.readLine();
             while (linha != null) {
                 String[] items = linha.split(";");
-                 addPedido(new Pedido(items[0], Integer.parseInt(items[1]), Integer.parseInt(items[2])));
+                addPedido(new Pedido(items[0], Integer.parseInt(items[1]), Integer.parseInt(items[2])));
                 linha = br.readLine();
             }
         } catch (IOException e) {
@@ -24,18 +24,25 @@ public class FilaPedido {
         }
     }
 
+
     public static void addPedido(Pedido pedido) {
         filaPedido.add(pedido);
     }
 
+    public static Pedido primeiro() {
+        return filaPedido.poll();
+    }
 
-    public static String imprimir() {
+
+    public static String percorrerFila() {
         StringBuilder sb = new StringBuilder();
-        while(!filaPedido.isEmpty()){
-            sb.append(filaPedido.poll() + "\n");
+        for (Pedido pedido : filaPedido) {
+            sb.append(pedido);
         }
         return sb.toString();
     }
 
 
 }
+
+
