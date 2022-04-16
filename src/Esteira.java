@@ -10,6 +10,7 @@ public class Esteira extends Thread{
             try {
                 System.out.println("Pedidos do cliente: " + nomCleint + ", sendo embalados...");
                 wait();
+                join(TRANSCICAO);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -25,6 +26,7 @@ public class Esteira extends Thread{
             try {
                 System.out.println("Produto:" + conteudo + " do clinte " + nomCleint + " esperado...");
                 wait();
+                join(TRANSCICAO);
             } catch (Exception e) {
                 e.printStackTrace();
             }

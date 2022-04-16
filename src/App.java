@@ -5,11 +5,9 @@ public class App {
 
         String arquivo = "baseDados.txt";
         FilaPedido.lerAquivo(arquivo);
-        Pedido pedido = FilaPedido.primeiro();
 
-        System.out.println(pedido);
+        FilaPedido.processar();
 
-       new Embalar(pedido, esteira);
-       new Empacotar(pedido,esteira);
     }
+
 }

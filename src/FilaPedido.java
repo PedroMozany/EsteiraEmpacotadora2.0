@@ -9,6 +9,7 @@ public class FilaPedido {
 
 
     private static Queue<Pedido> filaPedido = new PriorityQueue<>();
+    private static Pedido pedido;
 
 
     public static void lerAquivo(String arquivo) {
@@ -31,17 +32,25 @@ public class FilaPedido {
 
     public static Pedido primeiro() {
         return filaPedido.poll();
+
     }
 
 
     public static String percorrerFila() {
         StringBuilder sb = new StringBuilder();
         for (Pedido pedido : filaPedido) {
-            sb.append(pedido);
+            sb.append(pedido + "\n");
         }
         return sb.toString();
     }
 
+    public static void processar() {
+        Esteira esteira = new Esteira();
+        Pedido pedido = primeiro();
+        System.out.println(pedido);
+        new Embalar(pedido, esteira);
+        new Empacotar(pedido, esteira);
+    }
 
 }
 
