@@ -16,7 +16,7 @@ public class Esteira extends Thread{
             }
         }
         conteudo = quantPacote;
-        System.out.println("Embalando produto: " + conteudo + " do " + nomCleint);
+        System.out.println("Embalando produto: " +   (conteudo + 1)  + " do " + nomCleint);
         disponivel = true;
         notifyAll();
     }
@@ -24,14 +24,14 @@ public class Esteira extends Thread{
     public synchronized int get(String nomCleint) {
         while (disponivel == false) {
             try {
-                System.out.println("Produto:" + conteudo + " do clinte " + nomCleint + " esperado...");
+                System.out.println("Produto:" + (conteudo + 1) + " do clinte " + nomCleint + " esperado...");
                 wait();
                 join(TRANSCICAO);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Produto: " + conteudo + " empacotado" );
+        System.out.println("Produto: " + (conteudo + 1)  + " empacotado" );
         disponivel = false;
         notifyAll();
         return conteudo;
