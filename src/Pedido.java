@@ -1,53 +1,77 @@
 public class Pedido implements Comparable<Pedido> {
-    private String nomCleint;
-    private int quatPedido;
-    private int tempo;
 
+    private static final int TAMANHO_MAX_DO_PACOTE = 5000;
+    private static final int TAMANHO_DO_PRODUTO = 250;
+    private static final double TEMPO_PARA_EMPACOTAR = 5.0;
+    private static final double TEMPO_PARA_RETIRAR_PACOTE_DA_ESTEIRA = 10.0;
+    private String nomeDoCliente;
+    private int quantidadeDeProdutosNoPedido;
+    private int prazoDeEmpacotamento;
 
-    public Pedido(String nomCleint, int quatPedido, int tempo) {
-        this.nomCleint = nomCleint;
-        this.quatPedido = quatPedido;
-        this.tempo = tempo;
+    public Pedido(String nomeDoCliente, int quantidadeDeProdutosNoPedido, int prazoDeEmpacotamento) {
+        this.nomeDoCliente = nomeDoCliente;
+        this.quantidadeDeProdutosNoPedido = quantidadeDeProdutosNoPedido;
+        this.prazoDeEmpacotamento = prazoDeEmpacotamento;
     }
 
-
-    public String getNomCleint() {
-        return nomCleint;
+    public String getNomeDoCliente() {
+        return nomeDoCliente;
     }
 
-    public int getQuatPedido() {
-        return quatPedido;
+    public int getQuantidadeDeProdutosNoPedido() {
+        return quantidadeDeProdutosNoPedido;
     }
 
-    public int getTempo() {
-        return tempo;
+    public int getQuantidadeDePacotesNoPedido() {
+        return (int) Math
+                .ceil(((double) quantidadeDeProdutosNoPedido * TAMANHO_DO_PRODUTO) / TAMANHO_MAX_DO_PACOTE);
     }
 
-    public boolean equals(Pedido outro) {
-        return this.tempo == outro.tempo;
+    public double getTempoParaSerEmpacotadoEmSegundos() {
+        return getQuantidadeDePacotesNoPedido() * (TEMPO_PARA_EMPACOTAR + TEMPO_PARA_RETIRAR_PACOTE_DA_ESTEIRA);
+    }
+
+    public double getTempoParaSerEmpacotadoEmMinutos() {
+        return getTempoParaSerEmpacotadoEmSegundos() / 60;
+    }
+
+    public double getTempoParaSerEmpacotadoEmHoras() {
+        return getTempoParaSerEmpacotadoEmMinutos() / 60;
+    }
+
+    public boolean foiEmpacotadoDentroDoPrazo() {
+        if (prazoDeEmpacotamento == 0) {
+            return true;
+        }
+        return getTempoParaSerEmpacotadoEmHoras() <= prazoDeEmpacotamento;
+    }
+
+    public int getPrazoDeEmpacotamento() {
+        return prazoDeEmpacotamento;
+    }
+
+    public boolean igual(Pedido outro) {
+        return this.prazoDeEmpacotamento == outro.prazoDeEmpacotamento;
 
     }
 
     public int compareTo(Pedido outro) {
-        if (this.equals(outro)) {
-            if (this.quatPedido > outro.quatPedido) {
+        if (this.igual(outro)) {
+            if (this.quantidadeDeProdutosNoPedido > outro.quantidadeDeProdutosNoPedido) {
                 return 0;
             } else {
                 return 1;
             }
-        } else if (tempo < outro.tempo) {
+        } else if (prazoDeEmpacotamento < outro.prazoDeEmpacotamento) {
             return 1;
         } else {
             return -1;
         }
     }
 
-
-
     @Override
     public String toString() {
-        return this.nomCleint + "," + this.quatPedido + "," + this.tempo;
+        return this.nomeDoCliente + "," + this.quantidadeDeProdutosNoPedido + "," + this.prazoDeEmpacotamento;
     }
-
 
 }

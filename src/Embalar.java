@@ -1,6 +1,5 @@
 public class Embalar extends Thread {
 
-
     private Pedido pedido;
     private Esteira esteira;
 
@@ -12,17 +11,8 @@ public class Embalar extends Thread {
 
     @Override
     public void run() {
-
-        for (int i = 0; i < Empacotar.getQuatPacote(); i++) {
-            esteira.set(pedido.getNomCleint(), i);
+        for (int i = 0; i < pedido.getQuantidadeDePacotesNoPedido(); i++) {
+            esteira.set(pedido.getNomeDoCliente(), i);
         }
-//
-        System.out.println("Empacotamento dos produtos do cliente: " + pedido.getNomCleint() + " concluido!");
-
     }
 }
-
-
-
-
-
