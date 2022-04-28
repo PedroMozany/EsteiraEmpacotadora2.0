@@ -1,37 +1,32 @@
-public class Esteira extends Thread{
+public class Esteira extends Thread {
 
-    private  int conteudo;
-    private  boolean disponivel;
-    private int TRANSCICAO = 500;
+    private int conteudo;
+    private boolean disponivel;
+    private int TRANSCICAO = 1;
 
-
-    public  synchronized void set(String nomCleint, int quantPacote) {
+    public synchronized void set(String nomeDoCliente, int quantidadePacote) {
         while (disponivel == true) {
             try {
-                System.out.println("Pedidos do cliente: " + nomCleint + ", sendo embalados...");
                 wait();
                 join(TRANSCICAO);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        conteudo = quantPacote;
-        System.out.println("Embalando produto: " +   (conteudo + 1)  + " do " + nomCleint);
+        conteudo = quantidadePacote;
         disponivel = true;
         notifyAll();
     }
 
-    public synchronized int get(String nomCleint) {
+    public synchronized int get(String nomeDoCliente) {
         while (disponivel == false) {
             try {
-                System.out.println("Produto:" + (conteudo + 1) + " do clinte " + nomCleint + " esperado...");
                 wait();
                 join(TRANSCICAO);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Produto: " + (conteudo + 1)  + " empacotado" );
         disponivel = false;
         notifyAll();
         return conteudo;
