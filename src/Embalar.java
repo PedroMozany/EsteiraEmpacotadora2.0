@@ -14,7 +14,7 @@ public class Embalar extends Thread {
 
     /**
      * Metodo que vai realizar o processo de embalar do pedido e add um pedido na esteira 
-     * sendo que o bra�o esta embalando 20 produtos de uma vez e add dentro de um pacote
+     * sendo que o braço esta embalando 20 produtos de uma vez e add dentro de um pacote
      */
     @Override
     public void run() {
