@@ -157,7 +157,7 @@ public class Controller {
             salvarRelatoriosEmCsv();
             salvarRelatoriosEmTxt();
             System.out.println("\n" + "Fim do Processo \n" + "Relatorio salvo em relatorio.csv e relatorio.txt :D");
-            System.out.println("Fila de pedidos vazia!");
+            Relatorio.analisar();
             System.exit(0);
         }
 
