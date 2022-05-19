@@ -4,6 +4,7 @@ public class App {
         System.out.println("Processando...");
         Controller.lerAquivo(arquivo);
         Controller.processar();
+        Controller.processar();
     }
 
 }

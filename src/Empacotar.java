@@ -10,10 +10,11 @@ public class Empacotar extends Thread {
         start();
     }
 
-    
-    /**    
-     * Metodo que vai executar Thread com base looping para execuatar pela quantidade de pedido ? incremento 
-     * a esteira get() fazendo o saida do processo iniciando o proximo processo dentro da esteira
+    /**
+     * Metodo que vai executar Thread com base looping para execuatar pela
+     * quantidade de pedido ? incremento
+     * a esteira get() fazendo o saida do processo iniciando o proximo processo
+     * dentro da esteira
      */
     public void run() {
         try {
@@ -24,9 +25,9 @@ public class Empacotar extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println( pedido.getQuantidadeDePacotesNoPedido() + " pacotes do cliente " + pedido.getNomeDoCliente() + " em transporte");
+        System.out.println(pedido.getQuantidadeDePacotesNoPedido() + " pacotes do cliente " + pedido.getNomeDoCliente()
+                + " em transporte");
         Controller.processar();
-
     }
 
 }

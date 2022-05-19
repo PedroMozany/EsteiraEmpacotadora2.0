@@ -9,14 +9,12 @@ public class Pedido implements Comparable<Pedido> {
     private int prazoDeEmpacotamento;
     private int chegada;
 
-
     public Pedido(String nomeDoCliente, int quantidadeDeProdutosNoPedido, int prazoDeEmpacotamento, int chegada) {
         this.nomeDoCliente = nomeDoCliente;
         this.quantidadeDeProdutosNoPedido = quantidadeDeProdutosNoPedido;
         this.prazoDeEmpacotamento = prazoDeEmpacotamento;
         this.chegada = chegada;
     }
-
 
     public String getNomeDoCliente() {
         return nomeDoCliente;
@@ -26,8 +24,14 @@ public class Pedido implements Comparable<Pedido> {
         return quantidadeDeProdutosNoPedido;
     }
 
+    public int getTempoDeChegada() {
+        return chegada;
+    }
+
     /**
-     * Metodo que vai realizar o calculo de quantos pedido cabe dentro de um pacote de tamanho fixo
+     * Metodo que vai realizar o calculo de quantos pedido cabe dentro de um pacote
+     * de tamanho fixo
+     * 
      * @return total de pacotes que um clinte vai ter.
      */
     public int getQuantidadeDePacotesNoPedido() {
@@ -35,8 +39,11 @@ public class Pedido implements Comparable<Pedido> {
     }
 
     /**
-     * Metodo que vai relizar o calculo do tempo com base na quantidade de pacontes que um cliente tem.
-     * @return vai retunar a soma total de tempo que levar para quantidade especifica de paconte serem empacotada
+     * Metodo que vai relizar o calculo do tempo com base na quantidade de pacontes
+     * que um cliente tem.
+     * 
+     * @return vai retunar a soma total de tempo que levar para quantidade
+     *         especifica de paconte serem empacotada
      */
     public double getTempoParaSerEmpacotadoEmSegundos() {
         return getQuantidadeDePacotesNoPedido() * (TEMPO_PARA_EMPACOTAR + TEMPO_PARA_RETIRAR_PACOTE_DA_ESTEIRA);
@@ -44,6 +51,7 @@ public class Pedido implements Comparable<Pedido> {
 
     /**
      * metodo para transformar segundo em minutos
+     * 
      * @return vai returna os minutos
      */
     public double getTempoParaSerEmpacotadoEmMinutos() {
@@ -52,6 +60,7 @@ public class Pedido implements Comparable<Pedido> {
 
     /**
      * Metodo para transformar minutos em horas
+     * 
      * @return vai returna as horas.
      */
     public double getTempoParaSerEmpacotadoEmHoras() {
@@ -59,7 +68,9 @@ public class Pedido implements Comparable<Pedido> {
     }
 
     /**
-     * Metodo para saber se um pedido esta dentro do prazo ou não com base nas horas.
+     * Metodo para saber se um pedido esta dentro do prazo ou não com base nas
+     * horas.
+     * 
      * @return vai returna true se caso estiver dentro do prazo e falso para não
      */
     public boolean foiEmpacotadoDentroDoPrazo() {
@@ -73,9 +84,10 @@ public class Pedido implements Comparable<Pedido> {
         return prazoDeEmpacotamento;
     }
 
-
     /**
-     * Metodo para comparar um pedido/ chegada ja existente na lista com outro que sera add .
+     * Metodo para comparar um pedido/ chegada ja existente na lista com outro que
+     * sera add .
+     * 
      * @param outro
      * @return true caso tiver falso caso nao tiver.
      */
@@ -85,7 +97,9 @@ public class Pedido implements Comparable<Pedido> {
     }
 
     /**
-     * Metodo para comparar um pedido/ prazoDeEmpacotamento ja existente na lista com outro que sera add .
+     * Metodo para comparar um pedido/ prazoDeEmpacotamento ja existente na lista
+     * com outro que sera add .
+     * 
      * @param outro
      * @return true caso tiver falso caso nao tiver.
      */
@@ -93,7 +107,6 @@ public class Pedido implements Comparable<Pedido> {
         return this.prazoDeEmpacotamento == outro.prazoDeEmpacotamento;
 
     }
-
 
     /**
      * metodo para compara se um pedido tem o maior tempo que
@@ -119,9 +132,7 @@ public class Pedido implements Comparable<Pedido> {
             return -1;
         }
 
-
     }
-
 
     @Override
     public String toString() {
